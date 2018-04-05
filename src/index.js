@@ -10,15 +10,19 @@ module.exports = postcss.plugin('postcss-dialog-polyfill', () => css => {
           return;
         }
 
-        const parentFirst = pseudo.parent.first.toString().trim();
-        const reg = new RegExp(`.*${parentFirst} \\+ \\.backdrop.*`);
+        const reg = new RegExp(
+          `.*${pseudo.parent.first.toString().trim()} \\+ \\.backdrop.*`
+        );
 
         if (reg.test(rule.selector)) {
           return;
         }
 
         rule.cloneAfter({
-          selector: `${parentFirst} + .backdrop`
+          selector: rule.selector.replace(
+            '::backdrop',
+            ' + .backdrop'
+          )
         });
       });
     }).process(rule.selector);
