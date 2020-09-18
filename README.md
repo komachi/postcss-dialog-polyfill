@@ -19,7 +19,7 @@
 ## Installation
 
 ```
-npm i postcss-dialog-polyfill --save-dev
+npm i postcss postcss-dialog-polyfill --save-dev
 ```
 
 ## Usage
